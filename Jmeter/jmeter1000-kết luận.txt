@@ -1,0 +1,3 @@
+về phần Jmeter 1000 user: 
+Server vẫn chịu được số lượng lớn tuy nhiên vẫn có ít user vẫn bị lỗi 
+tỉ lệ rất thấp khoảng 1-2% 
