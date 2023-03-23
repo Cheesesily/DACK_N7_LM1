@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 import java.text.DecimalFormat;
 import java.time.Duration;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 @Test
 public class TC5 {
@@ -21,12 +22,15 @@ public class TC5 {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         WebDriver driver = new ChromeDriver(options);;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //1. Go to http://shopvnb.com/
         driver.get("http://shopvnb.com");
 
-        //3. Click Create an Account link and fill New User information except Email ID
+        //2. Click on Đăng ký
+        driver.findElement(By.xpath("//*[name()='path' and contains(@d,'M249.31,16')]")).click();
+        driver.findElement(By.cssSelector("a[title='Đăng ký']")).click();
 
-
+        //3. Điền thông tin
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         WebElement name = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//input[@id='ten']"))));
         WebElement email = driver.findElement(By.xpath("//input[@id='email']"));
@@ -43,10 +47,6 @@ public class TC5 {
         Random rand = new Random();
         int num1 = (rand.nextInt(7) + 1) * 100 + (rand.nextInt(8) * 10) + rand.nextInt(8);
         int num2 = rand.nextInt(743);
-
-        //2. Click on Đăng ký
-        driver.findElement(By.xpath("//*[name()='path' and contains(@d,'M249.31,16')]")).click();
-        driver.findElement(By.cssSelector("a[title='Đăng ký']")).click();
         int num3 = rand.nextInt(10000);
 
         DecimalFormat df3 = new DecimalFormat("000");
